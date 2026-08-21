@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, ForeignKey, Date, Interval
 from sqlalchemy.orm import relationship
-from DataBase import Base
 import time
+from DataBase.base import Base
 
 class StudySession(Base):
     __tablename__ = "study_sessions"

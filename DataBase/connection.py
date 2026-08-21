@@ -1,13 +1,19 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import sessionmaker
 
-engine = create_engine("aqlite:///study_tracker.db")
+from DataBase.base import Base
+
+from models.subject import Subject
+from models.topic import Topic
+from models.review import Review
+from models.study_session import StudySession
+
+
+engine = create_engine("sqlite:///study_tracker.db")
 
 base_session = sessionmaker(engine)
-local_session = base_session()
 
-Base = declarative_base()
+Base.metadata.create_all(engine)
 
 
-# Base.metadata.create_all()
 

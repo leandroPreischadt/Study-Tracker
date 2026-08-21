@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship
-from DataBase import Base
+from DataBase.base import Base
 
 class Subject(Base):
     __tablename__ = "subjects"
