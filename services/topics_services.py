@@ -41,9 +41,9 @@ def delete_topic():
 
     try:
         with base_session() as session:
-            stm = session.scalar(select(Topic).where(Topic.id == delete_choice))
-            print(f"You deleted <{stm.name}>")
-            session.delete(stm)
+            topic = session.scalar(select(Topic).where(Topic.id == delete_choice))
+            print(f"You deleted <{topic.name}>")
+            session.delete(topic)
             session.commit()
     except ValueError:
         print("Error\n")
