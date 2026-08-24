@@ -5,6 +5,7 @@ from services.topics_services import create_topic
 from services.topics_services import delete_topic
 from services.topics_services import show_topic
 from services.sessions_services import study_register
+from services.sessions_services import show_study_register
 
 def quit_option():
     
@@ -27,7 +28,8 @@ def main():
         print("2.DELETE TOPIC")
         print("3.SHOW STUDIES")
         print("4.REGISTER STUDY")
-        print("5.QUIT")
+        print("5.SHOW STUDY REGISTER")
+        print("6.QUIT")
         
         try:
             option = int(input("Enter a option: "))
@@ -47,6 +49,8 @@ def main():
             case 4:
                 study_register()
             case 5:
+                show_study_register()
+            case 6:
                 loggout = quit_option()
                 if loggout == True:
                     break
