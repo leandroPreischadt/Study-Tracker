@@ -1,8 +1,10 @@
 import os
 from services.subject_services import create_subject
+from services.subject_services import delete_subject
 from services.subject_services import show_subject
 from services.topics_services import create_topic
 from services.topics_services import delete_topic
+from services.topics_services import show_topic
 
 def quit_option():
     
@@ -15,9 +17,6 @@ def quit_option():
     except ValueError:
         print("invalid option!")
         return False
-        
-    
-    
 
 def main():
     print("Wlcome to your Study Staion!")
@@ -25,8 +24,9 @@ def main():
     while True:
         print("---MENU---")
         print("1.CREATE YOUR STUDY")
-        print("2.QUIT")
-        print("3.DELETE TOPIC")
+        print("2.DELETE TOPIC")
+        print("3.SHOW STUDIES")
+        print("4.QUIT")
         
         try:
             option = int(input("Enter a option: "))
@@ -40,6 +40,10 @@ def main():
                 create_subject()
                 create_topic()
             case 2:
+                delete_topic()
+            case 3:
+                show_topic()
+            case 4:
                 loggout = quit_option()
                 if loggout == True:
                     break
@@ -47,8 +51,6 @@ def main():
                     os.system("clear")
                     print("invalid option!")
                     continue
-            case 3:
-                delete_topic()
                 
 
 if __name__ == "__main__":

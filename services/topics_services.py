@@ -4,6 +4,7 @@ from sqlalchemy.orm import session
 from DataBase.connection import base_session
 from services.subject_services import show_subject
 from sqlalchemy import select
+import os
 
 def create_topic():
     
@@ -11,7 +12,7 @@ def create_topic():
         with base_session() as session:
             topics = session.scalars(select(Topic)).all()
             
-            if topics is None:
+            if not topics:
                 show_subject()
             else:
                 show_topic()
@@ -43,6 +44,7 @@ def delete_topic():
             stm = session.scalar(select(Topic).where(Topic.id == delete_choice))
             print(f"You deleted <{stm.name}>")
             session.delete(stm)
+            session.commit()
     except ValueError:
         print("Error\n")
     
@@ -53,12 +55,24 @@ def show_topic():
         with base_session() as session:
             subjects = session.scalars(select(Subject)).all()
             
+            if not subjects:
+                os.system("clear")
+                print("No subjects stored\n")
+                return 
+            
             print()
             for subject in subjects:
                 print(f"#{subject.name}")
+                
+                if not subject.topics:
+                    os.system("clear")
+                    print("No topics stored\n")
+                    return
+                
                 for topic in subject.topics:
                     print(f"|")
                     print(f"|__ {topic.id}) {topic.name}")
                 print()
     except ValueError:
-        print()
+        print("No subjects stored")
+    

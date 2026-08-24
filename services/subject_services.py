@@ -18,10 +18,20 @@ def create_subject():
 def show_subject():
     with base_session() as session:
         subjects = session.scalars(select(Subject.name)).all()
+        
+        if not subjects:
+            print("No subject stored")
+            return
     
     os.system("clear")
     print("=== Subjects ===")
     for subject in subjects:
         print(f"- {subject}\n")
+
+# def delete_subject():
+#     with base_session() as session:
+#         subjects = session.execute(select(Subject).where(Subject.id == 2)).scalar_one_or_none()
+#         session.delete(subjects)
+#         session.commit()
         
         
