@@ -6,8 +6,8 @@ import os
 
 def create_subject():
     with base_session() as session:
-        name = input("Enter the name of your subject: ")
-        description = input("Enter the description of your subject: ")
+        name = input("Enter the name of your subject: ").capitalize()
+        description = input("Enter the description of your subject: ").capitalize()
         
         subject = Subject(name = name, description= description)
         session.add(subject)
@@ -20,8 +20,8 @@ def show_subject():
         subjects = session.scalars(select(Subject.name)).all()
     
     os.system("clear")
+    print("=== Subjects ===")
     for subject in subjects:
-        print("=== Subjects ===")
         print(f"- {subject}\n")
         
         
