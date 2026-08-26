@@ -7,13 +7,14 @@ from services.topics_services import show_topic
 from services.sessions_services import study_register
 from services.sessions_services import show_study_register
 from services.reviews_services import create_review
+from services.reviews_services import show_review
 
 def quit_option():
     
     try:
-        option = input("press q to loggout: ").lower()
+        option = input("press ENTER to loggout: ")
         
-        if option == "q":
+        if option == "":
             return True
 
     except ValueError:
@@ -32,7 +33,8 @@ def main():
         print("4.REGISTER STUDY")
         print("5.SHOW STUDY REGISTER")
         print("6.CREATE REVIEW")
-        print("7.QUIT")
+        print("7.SHOW REVIEW")
+        print("8.QUIT")
         
         try:
             option = int(input("Enter a option: "))
@@ -56,6 +58,8 @@ def main():
             case 6:
                 create_review()
             case 7:
+                show_review()
+            case 8:
                 loggout = quit_option()
                 if loggout == True:
                     os.system("clear")

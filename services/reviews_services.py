@@ -5,6 +5,7 @@ from DataBase.connection import base_session
 from services.topics_services import show_topic
 from datetime import timedelta
 from models.review import Review
+from models.study_session import StudySession
 import os
 
 def create_review():
@@ -60,4 +61,33 @@ def create_review():
 
 
 def show_review():
-    pass
+    
+    try:
+        with base_session() as session:
+            show_topic()
+            
+            topic_id = int(input("Select the topic wish you want to see the review: "))
+            
+            review = session.scalars(select(Review).where(Review.topic_id == topic_id)).one_or_none()
+            
+            last_session = session.scalars(select(StudySession).where(StudySession.topic_id == topic_id).order_by(StudySession.study_date.desc())).first()
+            
+            last_review = last_session.study_date if last_session else None
+            
+            os.system("clear")
+            print(f"Last review: {last_review}")
+            print(f"Score: {review.score:.0f}/5")
+            print(f"Next review: {review.next_review}")
+        
+        while True:
+            quit_option = input("Press ENTER to quit: ")
+            
+            if quit_option == "":
+                os.system("clear")
+                return
+            else:
+                continue
+    except ValueError:
+        os.system("clear")
+        print("The topic must be a digit!")
+        return 
