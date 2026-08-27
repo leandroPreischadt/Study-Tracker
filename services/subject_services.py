@@ -28,6 +28,14 @@ def show_subject():
     for subject in subjects:
         print(f"- {subject}\n")
 
+def count_subjects():
+    with base_session() as session:
+        subjects = session.scalars(select(Subject.name)).all()
+        
+        number_of_subjects = len(subjects)
+        
+        print(f"📚 Subjects: {number_of_subjects}")
+
 # def delete_subject():
 #     with base_session() as session:
 #         subjects = session.execute(select(Subject).where(Subject.id == 2)).scalar_one_or_none()

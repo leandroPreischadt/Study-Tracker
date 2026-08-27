@@ -1,13 +1,14 @@
 import os
 from services.subject_services import create_subject
 from services.subject_services import show_subject
-from services.topics_services import create_topic
-from services.topics_services import delete_topic
-from services.topics_services import show_topic
+from services.subject_services import count_subjects
+from services.topics_services import *
 from services.sessions_services import study_register
 from services.sessions_services import show_study_register
 from services.reviews_services import create_review
 from services.reviews_services import show_review
+from services.reviews_services import deshboard_review
+import time
 
 def quit_option():
     
@@ -23,9 +24,24 @@ def quit_option():
 
 def main():
     os.system("clear")
-    print("Wlcome to your Study Staion!\n")
+    
+    
     
     while True:
+        
+        print("=======================")
+        print("    STUDY TRACKER")
+        print("=======================\n")
+        
+        count_subjects()
+        count_topics()
+        
+        print()
+        
+        deshboard_review()
+        
+        print("\n-----------------------\n")
+        
         print("---MENU---")
         print("1.CREATE YOUR STUDY")
         print("2.DELETE TOPIC")
@@ -66,7 +82,9 @@ def main():
                     break
                 else:
                     os.system("clear")
-                    print("invalid option!")
+                    print("invalid option!\n")
+                    time.sleep(2)
+                    os.system("clear")
                     continue
                 
 

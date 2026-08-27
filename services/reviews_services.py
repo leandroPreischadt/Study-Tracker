@@ -3,7 +3,7 @@ from sqlalchemy.orm import session
 from sqlalchemy import select
 from DataBase.connection import base_session
 from services.topics_services import show_topic
-from datetime import timedelta
+from datetime import timedelta, date
 from models.review import Review
 from models.study_session import StudySession
 import os
@@ -91,3 +91,16 @@ def show_review():
         os.system("clear")
         print("The topic must be a digit!")
         return 
+    
+
+def deshboard_review():
+    
+    today = date.today()
+    
+    with base_session() as session:
+        reviews = session.scalars(select(Review).order_by(Review.next_review.desc())).all()
+        
+        print(f"🔥 Reviews for today: {len(reviews)}\n")
+        
+        for review in reviews:
+            print(f"🟡 {review.topic.name}" if review.next_review > today else f"🔴 {review.topic.name}")

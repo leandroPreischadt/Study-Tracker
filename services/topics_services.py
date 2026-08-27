@@ -75,4 +75,11 @@ def show_topic():
                 print()
     except ValueError:
         print("No subjects stored")
-    
+
+def count_topics():
+    with base_session() as session:
+        topics = session.scalars(select(Topic)).all()
+        
+        number_of_topics = len(topics)
+        
+        print(f"📖 Topics: {number_of_topics}")
