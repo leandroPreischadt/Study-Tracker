@@ -1,13 +1,8 @@
-import os
-from services.subject_services import create_subject
-from services.subject_services import show_subject
-from services.subject_services import count_subjects
+from services.subject_services import *
 from services.topics_services import *
-from services.sessions_services import study_register
-from services.sessions_services import show_study_register
-from services.reviews_services import create_review
-from services.reviews_services import show_review
-from services.reviews_services import deshboard_review
+from services.sessions_services import *
+from services.reviews_services import *
+import os
 import time
 
 def quit_option():
@@ -24,8 +19,6 @@ def quit_option():
 
 def main():
     os.system("clear")
-    
-    
     
     while True:
         
@@ -87,6 +80,5 @@ def main():
                     os.system("clear")
                     continue
                 
-
 if __name__ == "__main__":
     main()

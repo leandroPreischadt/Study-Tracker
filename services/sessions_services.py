@@ -27,7 +27,6 @@ def study_register():
             minutes = int(input("How many minutes do you spand?: "))
             time = hours + minutes
             
-            
             topic = StudySession(topic_id= id_topic, study_date = default_date, duration= time)
             session.add(topic)
             session.commit()

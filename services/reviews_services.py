@@ -59,7 +59,6 @@ def create_review():
         print("The answer must be a digit!")
         return 
 
-
 def show_review():
     
     try:
@@ -92,7 +91,6 @@ def show_review():
         print("The topic must be a digit!")
         return 
     
-
 def deshboard_review():
     
     today = date.today()

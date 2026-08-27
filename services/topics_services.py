@@ -48,8 +48,6 @@ def delete_topic():
     except ValueError:
         print("Error\n")
     
-    
-    
 def show_topic():
     try:
         with base_session() as session:

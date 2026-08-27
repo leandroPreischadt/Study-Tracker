@@ -14,6 +14,3 @@ engine = create_engine("sqlite:///study_tracker.db")
 base_session = sessionmaker(engine)
 
 Base.metadata.create_all(engine)
-
-
-

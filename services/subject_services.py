@@ -35,11 +35,3 @@ def count_subjects():
         number_of_subjects = len(subjects)
         
         print(f"📚 Subjects: {number_of_subjects}")
-
-# def delete_subject():
-#     with base_session() as session:
-#         subjects = session.execute(select(Subject).where(Subject.id == 2)).scalar_one_or_none()
-#         session.delete(subjects)
-#         session.commit()
-        
-        
